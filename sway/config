@@ -1,0 +1,105 @@
+### 🛠️ 1. VARIÁVEIS E DEFINIÇÕES
+set $mod   Mod4
+set $term  kitty
+set $menu  rofi -show drun -show-icons -theme ~/.config/rofi/cyberpunk.rasi
+set $bg_img ~/.config/cybershell/wallpapers/default.jpg
+
+# Direções (Estilo Vim)
+set $left  h
+set $down  j
+set $up    k
+set $right l
+
+### 🎨 2. ESTÉTICA, GAPS E CORES (Cyberpunk Night City)
+default_border pixel 3
+default_floating_border normal
+hide_edge_borders none
+gaps inner 15
+gaps outer 5
+smart_gaps on
+
+# Palette: Tokyo Night (Blue / Dark / Purple)
+client.focused          #7aa2f7 #1a1b26 #c0caf5 #7aa2f7 #7aa2f7
+client.focused_inactive #292e42 #1a1b26 #545c7e #292e42 #292e42
+client.unfocused        #1a1b26 #1a1b26 #545c7e #1a1b26 #1a1b26
+client.urgent           #f7768e #f7768e #ffffff #f7768e #f7768e
+
+### 🪟 3. REGRAS DE JANELAS (Pop-ups e Widgets)
+floating_modifier $mod normal
+
+
+# [POP-UP] Cava (Visualizador de Áudio)
+for_window [app_id="cava_popup"] {
+    floating enable
+    resize set 900 400
+    move position center
+    border pixel 5
+}
+
+# [POP-UP] Terminal de Sistema / PowerShell
+for_window [app_id="sys_popup"] {
+    floating false
+    resize set 800 450
+    move position center
+    border pixel 5
+}
+
+# Regras Gerais de Diálogos
+for_window [window_role="pop-up"]      floating enable
+for_window [window_role="task_dialog"]  floating enable
+for_window [title="About Firefox"]     floating enable
+
+### ⌨️ 4. INPUT E ATALHOS
+input * {
+    xkb_layout br
+    xkb_variant abnt2
+}
+
+# Essenciais
+bindsym $mod+Return  exec $term
+bindsym $mod+Shift+q kill
+bindsym $mod+d       exec $menu
+bindsym $mod+Shift+c reload
+bindsym $mod+e       exec thunar
+bindsym $mod+i       exec idea
+bindsym $mod+f       exec firefox
+# 🎵 Atalhos de Ferramentas (HUD Style)
+bindsym $mod+v       exec $term --app-id "cava_popup" -o background_opacity=0.8 -e cava
+bindsym $mod+p       exec $term --app-id "sys_popup" pwsh
+bindsym $mod+t       exec $term --app-id "sys_popup" -e tty-clock -c -C 5 -n
+
+# Sistema e Captura
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Sair?' -b 'Sim' 'swaymsg exit'
+bindsym Print        exec grim ~/Imagens/$(date +%Y-%m-%d_%Hh%Mm%Ss).png
+bindsym $mod+Shift+s exec grim -g "$(slurp)" ~/Imagens/$(date +%Y-%m-%d_%Hh%Mm%Ss).png
+bindsym $mod+Shift+t exec pkill waybar || waybar
+
+# Movimentação de Foco
+bindsym $mod+$left   focus left
+bindsym $mod+$down   focus down
+bindsym $mod+$up     focus up
+bindsym $mod+$right  focus right
+
+### 📏 5. MODO RESIZE
+mode "resize" {
+    bindsym $left   resize shrink width 10px
+    bindsym $down   resize grow height 10px
+    bindsym $up     resize shrink height 10px
+    bindsym $right  resize grow width 10px
+    bindsym Return  mode "default"
+    bindsym Escape  mode "default"
+}
+bindsym $mod+r mode "resize"
+
+### 🚀 6. AUTOSTART (Inicialização)
+# Wallpaper
+exec_always swww-daemon
+exec_always [ -f $bg_img ] && swww img $bg_img --transition-type grow --transition-pos 0.5,0.5
+
+# Barra de Status
+exec_always pkill waybar; waybar
+
+# Widget de Relógio (Inicia invisível e fixo)
+exec $term --app-id "clock_widget" -o background_opacity=0 -e tty-clock -C 6 -c -d 1s
+
+include /etc/sway/config.d/*
