@@ -7,10 +7,11 @@
     "margin-right": 10,
     "spacing": 4,
     "modules-left": ["custom/launcher", "sway/workspaces", "sway/mode", "sway/window"],
-    "modules-center": ["clock", "custom/creator"],
-    "modules-right": ["custom/keychron", "pulseaudio", "battery", "memory", "custom/mifibra", "network", "custom/power"],
+    "modules-center": ["clock"],
+    "modules-right": ["custom/keychron", "pulseaudio", "battery", "cpu", "memory", "custom/mifibra", "network", "custom/power"],
+
     "custom/launcher": {
-        "format": "🌌",
+        "format": "🤖",
         "on-click": "rofi -show drun -theme ~/.config/rofi/cyberpunk.rasi",
         "tooltip": false
     },
@@ -29,12 +30,8 @@
         "format": "{:%a, %d %b %H:%M}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>"
     },
-    "custom/creator": {
-        "format": " | 👨‍💻 Costa",
-        "tooltip": false
-    },
     "custom/keychron": {
-        "format": "⌨️ Super@",
+        "format": "Fr4ncim4r🌌",
         "tooltip": false
     },
     "pulseaudio": {
@@ -53,11 +50,16 @@
         "format": "{icon} {capacity}%",
         "format-icons": ["", "", "", "", ""]
     },
+    "cpu": {
+        "format": "💽{usage}%",
+        "tooltip": true,
+        "interval": 2
+    },
     "memory": {
-        "format": "💾 {used:0.1f}G"
+        "format": "🧠{used:0.1f}G"
     },
     "custom/mifibra": {
-        "format": "📡 Meia Mole Meia Dura",
+        "format": "SkyNet👁️",
         "tooltip": false
     },
     "network": {
@@ -67,7 +69,7 @@
         "on-click": "nm-connection-editor"
     },
     "custom/power": {
-        "format": "☢️",
+        "format": "",
         "on-click": "swaynag -t warning -m 'Power Menu' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'swaymsg exit'",
         "tooltip": false
     }

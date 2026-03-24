@@ -51,6 +51,11 @@ window#waybar {
     border: 1px solid #414868;
 }
 
+#cpu {
+    background: #ff9e64;
+    color: #1a1b26;
+}
+
 #clock {
     background: #1a1b26;
     color: #c0caf5;
