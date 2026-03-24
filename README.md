@@ -1,3 +1,8 @@
+
+  <img width="1359" height="768" alt="2026-03-24_16h18m27s" src="https://github.com/user-attachments/assets/fdecc148-9634-4c33-8c16-d13ddb1c8553" />
+
+
+
 # ⚡ Sway Dotfiles
 # BY FR4N
 Um conjunto de **dotfiles modernos e modulares** para configurar rapidamente um ambiente Linux produtivo, bonito e funcional.
