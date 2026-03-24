@@ -64,12 +64,12 @@
     },
     "network": {
         "format-wifi": " {signalStrength}%",
-        "format-ethernet": "",
+        "format-ethernet": "👀",
         "format-disconnected": "⚠",
         "on-click": "nm-connection-editor"
     },
     "custom/power": {
-        "format": "",
+        "format": "☣️",
         "on-click": "swaynag -t warning -m 'Power Menu' -b 'Shutdown' 'systemctl poweroff' -b 'Reboot' 'systemctl reboot' -b 'Logout' 'swaymsg exit'",
         "tooltip": false
     }
